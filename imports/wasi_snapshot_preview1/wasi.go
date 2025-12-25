@@ -3,8 +3,9 @@
 // are accessible from WebAssembly-defined functions via importing ModuleName.
 // All WASI functions return a single Errno result: ErrnoSuccess on success.
 //
-// This package also includes no-op implementations of wasi:sql@0.2.0-draft API
-// functions (connection-open, statement-prepare, error-trace, query, exec).
+// This package also includes implementations of wasi:sql@0.2.0-draft API
+// functions using Go's database/sql package for actual database operations.
+// Supported functions: connection-open, statement-prepare, error-trace, query, exec.
 //
 // e.g. Call Instantiate before instantiating any wasm binary that imports
 // "wasi_snapshot_preview1", Otherwise, it will error due to missing imports.
