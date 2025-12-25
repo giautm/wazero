@@ -26,6 +26,7 @@ type Context struct {
 	osyield            sys.Osyield
 	randSource         io.Reader
 	fsc                FSContext
+	sqlc               *SQLContext
 }
 
 // Args is like os.Args and defaults to nil.
@@ -101,6 +102,11 @@ func (c *Context) Osyield() {
 // FS returns the possibly empty (UnimplementedFS) file system context.
 func (c *Context) FS() *FSContext {
 	return &c.fsc
+}
+
+// SQL returns the SQL context for database operations.
+func (c *Context) SQL() *SQLContext {
+	return c.sqlc
 }
 
 // RandSource is a source of random bytes and defaults to a deterministic source.
@@ -189,6 +195,9 @@ func NewContext(
 	}
 
 	err = sysCtx.InitFSContext(stdin, stdout, stderr, fs, guestPaths, tcpListeners)
+
+	// Initialize SQL context
+	sysCtx.sqlc = NewSQLContext()
 
 	return
 }
