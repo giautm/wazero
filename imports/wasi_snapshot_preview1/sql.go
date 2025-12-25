@@ -49,7 +49,7 @@ func newSQLHostFunc(
 var connectionOpen = newSQLHostFunc(
 	"connection-open",
 	connectionOpenFn,
-	[]wasm.ValueType{i32, i32, i32},
+	[]api.ValueType{i32, i32, i32},
 	"name_ptr", "name_len", "result_ptr",
 )
 
@@ -65,7 +65,7 @@ func connectionOpenFn(_ context.Context, mod api.Module, params []uint64) uint32
 var statementPrepare = newSQLHostFunc(
 	"statement-prepare",
 	statementPrepareFn,
-	[]wasm.ValueType{i32, i32, i32, i32, i32},
+	[]api.ValueType{i32, i32, i32, i32, i32},
 	"query_ptr", "query_len", "params_ptr", "params_len", "result_ptr",
 )
 
@@ -81,7 +81,7 @@ func statementPrepareFn(_ context.Context, mod api.Module, params []uint64) uint
 var errorTrace = newSQLHostFunc(
 	"error-trace",
 	errorTraceFn,
-	[]wasm.ValueType{i32, i32, i32},
+	[]api.ValueType{i32, i32, i32},
 	"error_handle", "result_ptr", "result_len_ptr",
 )
 
@@ -100,7 +100,7 @@ func errorTraceFn(_ context.Context, mod api.Module, params []uint64) uint32 {
 var sqlQuery = newSQLHostFunc(
 	"query",
 	sqlQueryFn,
-	[]wasm.ValueType{i32, i32, i32},
+	[]api.ValueType{i32, i32, i32},
 	"conn_handle", "stmt_handle", "result_ptr",
 )
 
@@ -121,7 +121,7 @@ func sqlQueryFn(_ context.Context, mod api.Module, params []uint64) uint32 {
 var sqlExec = newSQLHostFunc(
 	"exec",
 	sqlExecFn,
-	[]wasm.ValueType{i32, i32, i32},
+	[]api.ValueType{i32, i32, i32},
 	"conn_handle", "stmt_handle", "result_ptr",
 )
 
