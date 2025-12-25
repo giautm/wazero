@@ -13,6 +13,7 @@ The following example projects can help you practice WebAssembly with wazero:
 * [multiple-results](multiple-results) - how to return more than one result
   from WebAssembly or Go-defined functions.
 * [multiple-runtimes](multiple-runtimes) - how to share compilation caches across multiple runtimes.
+* [sql](sql) - how to use SQL databases from WebAssembly using the wasi:sql API.
 * [wasi](../imports/wasi_snapshot_preview1/example) - how to use I/O in your
   WebAssembly modules using WASI (WebAssembly System Interface).
 
