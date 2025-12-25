@@ -152,6 +152,11 @@ func (m *ModuleInstance) ensureResourcesClosed(ctx context.Context) (err error) 
 
 	if sysCtx := m.Sys; sysCtx != nil { // nil if from HostModuleBuilder
 		err = sysCtx.FS().Close()
+		if sqlCtx := sysCtx.SQL(); sqlCtx != nil {
+			if e := sqlCtx.Close(); err == nil {
+				err = e
+			}
+		}
 		m.Sys = nil
 	}
 
