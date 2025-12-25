@@ -24,7 +24,6 @@ const (
 	ModuleName = "wasi:sql@0.2.0-draft"
 
 	i32 = wasm.ValueTypeI32
-	i64 = wasm.ValueTypeI64
 )
 
 // MustInstantiate calls Instantiate or panics on error.
@@ -170,10 +169,6 @@ var connectionOpen = newHostFunc(
 
 func connectionOpenFn(_ context.Context, mod api.Module, params []uint64) uint32 {
 	// No-op implementation: return error
-	// resultPtr := uint32(params[2])
-	// Write error handle (0) to result
-	// mem := mod.Memory()
-	// mem.WriteUint32Le(resultPtr, 0)
 	return 1 // error
 }
 
